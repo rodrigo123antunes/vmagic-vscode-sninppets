@@ -1,0 +1,13 @@
+{
+  "name": "vmagic",
+  "version": "1.0.0",
+  "description": "Vmagic snippets created by Rodrigo Antunes.",
+  "main": "index.js",
+  "repository": "https://github.com/rodrigo123antunes/vmagic-vscode-sninppets.git",
+  "author": "Rodrigo_bpz <rodrigobpzantunes2016@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.4.0",
+    "vsce": "^1.69.0"
+  }
+}
