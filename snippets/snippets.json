@@ -1,0 +1,143 @@
+{
+  "newController": {
+    "prefix": "vctrl",
+    "body": [
+      "'use strict';",
+      "",
+      "const AppController = require('./AppController');",
+      "",
+      "class ${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends AppController {",
+      "    init() {",
+      "        this.model('${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}');",
+      "        this.logger = this.component('Logger');",
+      "    }",
+      "",
+      "    //Your logic here",
+      "}",
+      "module.exports = ${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};",
+      ""
+    ],
+    "description": "Create Vmagic Controller"
+  },
+
+  "newModel": {
+    "prefix": "vmodel",
+    "body": [
+      "'use strict';",
+      "",
+      "var AppModel = require('vmagic/AppModel');",
+      "",
+      "class ${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}} extends AppModel {",
+      "    init() {",
+      "        this.useTable = '${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}';",
+      "        this.logger = this.component('Logger');",
+      "    }",
+      "",
+      "    //Your logic here",
+      "}",
+      "module.exports = ${1:${TM_FILENAME_BASE/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}};",
+      ""
+    ],
+    "description": "Create Vmagic Model"
+  },
+
+  "newMethodPost": {
+    "prefix": "vfmpost",
+    "body": [
+      "async post(callback) {",
+      "    let response = {};",
+      "    try {",
+      "        const res = await this.Model.save(this.payload);",
+      "        response = this.responseSuccess(res);",
+      "    } catch (err) {",
+      "        if (!this.statusCode) {",
+      "            this.statusCode = 500;",
+      "        }",
+      "        this.logger.error(err.message);",
+      "        response = this.responseError('Erro', err.message, this.statusCode);",
+      "",
+      "        return;",
+      "    }",
+      "",
+      "    callback(response);",
+      "",
+      "}"
+    ],
+    "description": "Create function method post"
+  },
+
+  "newMethodGet": {
+    "prefix": "vfmget",
+    "body": [
+      "async get(callback) {",
+      "    let response = {};",
+      "    try {",
+      "        const res = await this.Model.findAll();",
+      "        response = this.responseSuccess(res);",
+      "    } catch (err) {",
+      "        if (!this.statusCode) {",
+      "            this.statusCode = 500;",
+      "        }",
+      "        this.logger.error(err.message);",
+      "        response = this.responseError('Erro', err.message, this.statusCode);",
+      "",
+      "        return;",
+      "    }",
+      "",
+      "    callback(response);",
+      "",
+      "}"
+    ],
+    "description": "Create function method get"
+  },
+
+  "newMethodFindBy": {
+    "prefix": "vfmfindby",
+    "body": [
+      "async findBy(callback) {",
+      "    let response = {};",
+      "    try {",
+      "        const res = await this.Model.findBy({'field': this.query.field});",
+      "        response = this.responseSuccess(res);",
+      "    } catch (err) {",
+      "        if (!this.statusCode) {",
+      "            this.statusCode = 500;",
+      "        }",
+      "        this.logger.error(err.message);",
+      "        response = this.responseError('Erro', err.message, this.statusCode);",
+      "",
+      "        return;",
+      "    }",
+      "",
+      "    callback(response);",
+      "",
+      "}"
+    ],
+    "description": "Create function findBy"
+  },
+
+  "newMethodPut": {
+    "prefix": "vfmput",
+    "body": [
+      "async put(callback) {",
+      "    let response = {};",
+      "    try {",
+      "        const res = await this.Model.update(fields, {'field-condition': value-condition});",
+      "        response = this.responseSuccess(res);",
+      "    } catch (err) {",
+      "        if (!this.statusCode) {",
+      "            this.statusCode = 500;",
+      "        }",
+      "        this.logger.error(err.message);",
+      "        response = this.responseError('Erro', err.message, this.statusCode);",
+      "",
+      "        return;",
+      "    }",
+      "",
+      "    callback(response);",
+      "",
+      "}"
+    ],
+    "description": "Create function method put"
+  },
+}
